@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:5.0
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+      - mongodb
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - mongodb_data_container:/data/db
+  chatbot:
+    depends_on:
+      - mongo
+    restart: always
+    ports:
+      - "127.0.0.1:9000:9000"
+    networks:
+      - mongodb
+    build:
+      context: "../telegram-chat-bot/target/docker/stage/"
+    command: -Dconfig.file=/opt/docker/conf/application-docker.conf -Dplay.http.secret.key=83hn9832f09hfehqighqilnhnliqehrmoqiehnleihnihrvanilurehnqo8vhneroivheniov
+volumes:
+  mongodb_data_container:
+networks:
+  mongodb:

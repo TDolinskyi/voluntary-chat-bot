@@ -1,0 +1,41 @@
+@import org.webjars.play.WebJarAssets
+@import org.webjars.play.WebJarsUtil
+@import com.mohiva.play.silhouette.impl.providers.oauth2.GoogleProvider
+@import b4.inline.fieldConstructor
+
+@this()(implicit webJarsUtil: WebJarsUtil, assets: AssetsFinder)
+@(signInForm: Form[de.bot.forms.SignInForm.Data], socialProviders: com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages)
+@implicitFieldConstructor = @{ b4.vertical.fieldConstructor() }
+
+@main(messages("sign.in.title")) {
+    <fieldset class="col-md-6 col-md-offset-3">
+        <legend>@messages("sign.in.credentials")</legend>
+        @helper.form(action = de.bot.controllers.routes.SignInController.submit) {
+            @helper.CSRF.formField
+            @b4.email(signInForm("email"), Symbol("_hiddenLabel") -> messages("email"), Symbol("placeholder") -> messages("email"), Symbol("class") -> "form-control input-lg")
+            @b4.password(signInForm("password"), Symbol("_hiddenLabel") -> messages("password"), Symbol("placeholder") -> messages("password"), Symbol("class") -> "form-control input-lg")
+            @b4.checkbox(signInForm("rememberMe"), Symbol("_text") -> messages("remember.me"), Symbol("checked") -> true)
+            <div class="form-group">
+                <div>
+                    <button id="submit" type="submit" value="submit" class="btn btn-lg btn-primary btn-block">@messages("sign.in")</button>
+                </div>
+            </div>
+        }
+
+        <div>
+            <p class="not-a-member">@messages("not.a.member") <a href="@de.bot.controllers.routes.SignUpController.view">@messages("sign.up.now")</a> | <a href="@de.bot.controllers.routes.ForgotPasswordController.view" title="@messages("forgot.your.password")">@messages("forgot.your.password")</a></p>
+        </div>
+
+        @if(socialProviders.providers.nonEmpty) {
+            <div class="social-providers">
+                <p>@messages("or.use.social")</p>
+                <div>
+                @for(p <- socialProviders.providers) {
+                    <a href="@de.bot.controllers.routes.SocialAuthController.authenticate(p.id)" class="provider @p.id" title="@messages(p.id)"><img src="@assets.path(s"images/providers/${p.id}.png")" width="64px" height="64px" alt="@messages(p.id)"></a>
+                }
+                </div>
+            </div>
+        }
+
+    </fieldset>
+}

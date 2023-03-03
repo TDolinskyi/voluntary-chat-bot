@@ -1,0 +1,48 @@
+@import controllers.AssetsFinder
+@import org.webjars.play.WebJarsUtil
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import de.bot.db.model.User
+
+@this()(implicit webJarsUtil: WebJarsUtil, assets: AssetsFinder)
+@(message: String, user: User)(implicit request: RequestHeader, messages: Messages)
+
+@main("Telegram bot admin", Some(user), Some(message)) {
+    <div class="main-wrapper">
+        <p><strong>telegram bot admin:</strong>@message</p>
+        <div id='calendar'></div>
+        <div id="popup">
+            <div class="tabs-wrapper" id="tabs">
+                <ul>
+                    <li><a href="#tab-0">Medical</a></li>
+                    <li><a href="#tab-1">Other</a></li>
+                </ul>
+                <div id="tab-0">
+                    <div class="person-table" id="medical"></div>
+                </div>
+                <div id="tab-1">
+                    <div class="person-table" id="other"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="tabs-wrapper">
+            <ul>
+                <li><a href="#tab-general-0">All</a></li>
+                <li><a href="#tab-general-1">Medical</a></li>
+                <li><a href="#tab-general-2">Other</a></li>
+            </ul>
+            <div id="tab-general-0">
+                <div class="person-table column-5" id="general-table-all"></div>
+            </div>
+            <div id="tab-general-1">
+                <div class="person-table column-5" id="general-table-medical"></div>
+            </div>
+            <div id="tab-general-2">
+                <div class="person-table column-5" id="general-table-other"></div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,261 @@
+body {
+    font-family: arial, sans-serif;
+}
+
+.main-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+div.zabuto_calendar .table tr.calendar-month-header td:first-of-type,
+div.zabuto_calendar .table tr.calendar-month-header td:last-of-type {
+    padding: 0;
+    position: relative;
+}
+
+div.zabuto_calendar .table tr.calendar-month-header td:first-of-type div.calendar-month-navigation,
+div.zabuto_calendar .table tr.calendar-month-header td:last-of-type div.calendar-month-navigation {
+    position: absolute;
+    padding-top: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+div.zabuto_calendar .table tr.calendar-month-header td:first-of-type div.calendar-month-navigation:after,
+div.zabuto_calendar .table tr.calendar-month-header td:last-of-type div.calendar-month-navigation:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-left: 2px solid #000;
+    border-top: 2px solid #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(315deg);
+}
+
+div.zabuto_calendar .table tr.calendar-month-header td:last-of-type div.calendar-month-navigation:after {
+    transform: rotate(135deg);
+}
+
+div.zabuto_calendar .table tr td.dow-clickable:hover,
+div.zabuto_calendar .table tr td.event-clickable:hover {
+    background-color: #f0f0f0;
+}
+
+div.zabuto_calendar .table tr td.dow-clickable:active,
+div.zabuto_calendar .table tr td.event-clickable:active {
+    background-color: #ddd;
+}
+
+.ui-dialog.ui-widget.ui-widget-content {
+    border: none;
+    width: 1000px!important;
+    max-width: 90%;
+    right: 0!important;
+    left: 0!important;
+    margin: auto;
+    padding: 0;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: none;
+    border: none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    border: none;
+    background: none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close * {
+    display: none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close:before,
+.ui-dialog .ui-dialog-titlebar-close:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #000;
+    transform: rotate(45deg);
+}
+
+.ui-dialog .ui-dialog-titlebar-close:after {
+    transform: rotate(135deg);
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 10px;
+}
+
+.tabs-wrapper.ui-widget.ui-widget-content {
+    border: none;
+    padding: 0;
+}
+
+.tabs-wrapper.ui-tabs .ui-tabs-nav {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.ui-widget-content .ui-state-default {
+    outline: none!important;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-content .ui-state-active a,
+.ui-widget-header .ui-state-active,
+a.ui-button:active, .ui-button:active,
+.ui-button.ui-state-active:hover {
+    background-color: #fff;
+    border-color: #ddd;
+    color: #454545;
+}
+
+.tabs-wrapper.ui-tabs .ui-tabs-panel {
+    padding: 0;
+}
+
+.person-table {
+    padding: 0;
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    max-height: 507px;
+    overflow: auto;
+}
+
+.person-table h3 {
+    margin: 0;
+    padding: 20px 10px;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+.person {
+    display: flex;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+}
+
+.person-info {
+    width: calc(100% / 6);
+    min-width: calc(100% / 6);
+    padding: 10px;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    box-sizing: border-box;
+}
+
+.person-info-title {
+    display: none;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.person-table.column-5 .person-info {
+    width: calc(100% / 7);
+    min-width: calc(100% / 7);
+}
+
+.person:nth-of-type(2n) {
+    background-color: #dddddd;
+}
+
+.person:nth-of-type(2n) .person-info {
+    border-right: 1px solid #c1c1c1;
+}
+
+.person:nth-of-type(2n) .person-info:last-of-type {
+    border-right: 1px solid #dddddd;
+}
+
+
+@media screen and (max-width: 768px) {
+    body.popup-open {
+        overflow: hidden;
+    }
+
+    div.zabuto_calendar .table tr td div.day {
+        padding: 15px 0;
+    }
+
+    .ui-dialog.ui-widget.ui-widget-content {
+        height: 100vh!important;
+        overflow: auto;
+        max-width: 100%;
+    }
+
+    .ui-dialog .ui-dialog-titlebar-close {
+        height: 50px;
+        width: 50px;
+        z-index: 10;
+    }
+
+
+
+    .ui-dialog .ui-dialog-titlebar-close:before,
+    .ui-dialog .ui-dialog-titlebar-close:after {
+        width: 30px;
+    }
+
+    .tabs-wrapper.ui-tabs .ui-tabs-nav li {
+        border-bottom-width: 1px;
+        margin-right: 10px;
+    }
+
+    .person-table {
+        border: none;
+        margin-top: 10px;
+        max-height: none;
+    }
+
+    .person.title {
+        display: none;
+    }
+
+    .person-info-title {
+        display: block;
+    }
+
+    .person {
+        flex-direction: column;
+        margin-bottom: 30px;
+        border: 2px solid #dddddd;
+        border-radius: 10px;
+    }
+
+    .person:nth-of-type(2n) {
+        background: none;
+    }
+
+    .person-table .person-info,
+    .person-table.column-5 .person-info {
+        width: 100%;
+    }
+
+    .person:nth-of-type(2n) .person-info,
+    .person:nth-of-type(2n) .person-info:last-of-type,
+    .person-table.column-5 .person-info,
+    .person-info {
+        border-right: none;
+    }
+
+    .person-info:last-of-type {
+        border-bottom: none;
+    }
+}
